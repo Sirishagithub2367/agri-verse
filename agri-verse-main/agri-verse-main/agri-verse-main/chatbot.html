@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriVerse AI Assistant</title>
+
+    <link rel="stylesheet" href="chatbot.css">
+</head>
+
+<body>
+
+    <div class="chatbot-container">
+
+        <div class="chat-header">
+            <div>
+                <h1>🌱 AgriVerse AI</h1>
+                <p>Your smart farming assistant</p>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+
+            <div class="message bot-message">
+                <div class="message-content">
+                    Hello! 👋 I'm AgriVerse AI.
+                    <br><br>
+                    Ask me anything about farming, crops, irrigation,
+                    fertilizers, crop diseases, or agricultural schemes.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="chat-input-area">
+
+            <input
+                type="text"
+                id="messageInput"
+                placeholder="Ask something about agriculture..."
+                autocomplete="off"
+            >
+
+            <button id="sendButton">Send</button>
+
+        </div>
+
+    </div>
+
+    <script src="chatbot.js"></script>
+
+</body>
+</html>
