@@ -42,13 +42,15 @@ function sendMessage() {
     // Clear input
     messageInput.value = "";
 
-    // Temporary response
+    // Temporary response (pulled from current language data so it matches selected language)
     setTimeout(() => {
 
-        addMessage(
-            "Thanks for your question! 🌱 I'm currently running in frontend-only mode. Soon I'll be connected to the AgriVerse AI backend.",
-            "bot"
-        );
+        const fallback = "Thanks for your question! 🌱 I'm currently running in frontend-only mode. Soon I'll be connected to the AgriVerse AI backend.";
+        const reply = (typeof currentLangData !== "undefined" && currentLangData.chatbotTempReply)
+            ? currentLangData.chatbotTempReply
+            : fallback;
+
+        addMessage(reply, "bot");
 
     }, 500);
 }

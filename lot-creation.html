@@ -9,22 +9,28 @@
 </head>
 <body>
 
+<div class="lang-switcher" style="text-align:center; margin:10px;">
+  <button onclick="loadLanguage('en')">EN</button>
+  <button onclick="loadLanguage('hi')">हिं</button>
+  <button onclick="loadLanguage('ta')">தமிழ்</button>
+</div>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-success">
   <div class="container">
     <a class="navbar-brand" href="index.html">🌾 AgriConnect</a>
     <div>
-      <a class="btn btn-outline-light me-2" href="farmer.html">Farmer</a>
-      <a class="btn btn-outline-light me-2" href="buyer.html">Buyer</a>
-      <a class="btn btn-outline-light" href="transaction.html">Transactions</a>
+      <a class="btn btn-outline-light me-2" href="farmer.html" data-lang-key="farmer">Farmer</a>
+      <a class="btn btn-outline-light me-2" href="buyer.html" data-lang-key="buyer">Buyer</a>
+      <a class="btn btn-outline-light" href="transaction.html" data-lang-key="viewTransactions">Transactions</a>
     </div>
   </div>
 </nav>
 
 <div class="container mt-4 mb-5">
-  <h3 class="mb-1">Create a Lot to Sell</h3>
-  <p class="text-muted mb-4">Fill in your produce details — verified buyers nearby will see this lot and can send offers.</p>
+  <h3 class="mb-1" data-lang-key="createLotTitle">Create a Lot to Sell</h3>
+  <p class="text-muted mb-4" data-lang-key="createLotSubtitle">Fill in your produce details — verified buyers nearby will see this lot and can send offers.</p>
 
-  <div class="alert alert-info">
+  <div class="alert alert-info" data-lang-key="saleWindowTip">
     💡 <strong>Sale-window tip:</strong> Tomato prices at Koyambedu are recovering from the monsoon disruption.
     Historical trend suggests prices may rise ~10–15% over the next 3–4 days — consider waiting if you have storage.
   </div>
@@ -33,27 +39,27 @@
 
     <div class="row g-3">
       <div class="col-md-4">
-        <label class="form-label">Crop</label>
+        <label class="form-label" data-lang-key="cropName">Crop</label>
         <select class="form-select" id="cropSelect">
-          <option>Tomato</option>
-          <option>Onion</option>
-          <option>Potato</option>
-          <option>Other</option>
+          <option data-lang-key="tomato">Tomato</option>
+          <option data-lang-key="onion">Onion</option>
+          <option data-lang-key="potato">Potato</option>
+          <option data-lang-key="otherLabel">Other</option>
         </select>
       </div>
       <div class="col-md-4">
-        <label class="form-label">Quantity</label>
+        <label class="form-label" data-lang-key="quantity">Quantity</label>
         <div class="input-group">
           <input type="number" class="form-control" placeholder="e.g. 500">
           <select class="form-select" style="max-width:120px;">
-            <option>kg</option>
-            <option>quintal</option>
-            <option>tonnes</option>
+            <option data-lang-key="unitKg">kg</option>
+            <option data-lang-key="unitQuintal">quintal</option>
+            <option data-lang-key="unitTonnes">tonnes</option>
           </select>
         </div>
       </div>
       <div class="col-md-4">
-        <label class="form-label">Nearest Market</label>
+        <label class="form-label" data-lang-key="nearestMarket">Nearest Market</label>
         <select class="form-select">
           <option>Koyambedu, Chennai</option>
           <option>Coimbatore</option>
@@ -64,68 +70,70 @@
 
     <div class="row g-3 mt-1">
       <div class="col-md-4">
-        <label class="form-label">Quality Grade (self-assessed)</label>
+        <label class="form-label" data-lang-key="qualityGradeSelf">Quality Grade (self-assessed)</label>
         <select class="form-select">
-          <option>Grade A — Premium</option>
-          <option>Grade B — Standard</option>
-          <option>Grade C — Local sale</option>
+          <option data-lang-key="gradeAPremium">Grade A — Premium</option>
+          <option data-lang-key="gradeBStandard">Grade B — Standard</option>
+          <option data-lang-key="gradeCLocal">Grade C — Local sale</option>
         </select>
       </div>
       <div class="col-md-4">
-        <label class="form-label">Harvest Date</label>
+        <label class="form-label" data-lang-key="harvestDate">Harvest Date</label>
         <input type="date" class="form-control">
       </div>
       <div class="col-md-4">
-        <label class="form-label">Storage Available?</label>
+        <label class="form-label" data-lang-key="storageAvailable">Storage Available?</label>
         <select class="form-select">
-          <option>No — must sell within 2 days</option>
-          <option>Yes — cold storage</option>
-          <option>Yes — ambient storage</option>
+          <option data-lang-key="storageNo">No — must sell within 2 days</option>
+          <option data-lang-key="storageColdYes">Yes — cold storage</option>
+          <option data-lang-key="storageAmbientYes">Yes — ambient storage</option>
         </select>
       </div>
     </div>
 
     <div class="row g-3 mt-1">
       <div class="col-md-6">
-        <label class="form-label">Expected Price (₹/quintal)</label>
-        <input type="number" class="form-control" placeholder="Suggested: ₹2,150 – ₹2,350 based on today's mandi rate">
+        <label class="form-label" data-lang-key="expectedPrice">Expected Price (₹/quintal)</label>
+        <input type="number" class="form-control" placeholder="Suggested: ₹2,150 – ₹2,350 based on today's mandi rate" data-lang-key-placeholder="expectedPricePlaceholder">
       </div>
       <div class="col-md-6">
-        <label class="form-label">Photos of Produce (optional)</label>
+        <label class="form-label" data-lang-key="photosOptional">Photos of Produce (optional)</label>
         <input type="file" class="form-control" multiple accept="image/*">
       </div>
     </div>
 
     <div class="row g-3 mt-1">
       <div class="col-md-6">
-        <label class="form-label">Pickup / Delivery</label>
+        <label class="form-label" data-lang-key="pickupDelivery">Pickup / Delivery</label>
         <select class="form-select">
-          <option>Farmer will deliver to market</option>
-          <option>Need logistics/transport support</option>
-          <option>Buyer to pick up from farm gate</option>
+          <option data-lang-key="farmerDelivers">Farmer will deliver to market</option>
+          <option data-lang-key="needLogistics">Need logistics/transport support</option>
+          <option data-lang-key="buyerPickup">Buyer to pick up from farm gate</option>
         </select>
       </div>
       <div class="col-md-6">
-        <label class="form-label">Preferred Payment Mode</label>
+        <label class="form-label" data-lang-key="preferredPayment">Preferred Payment Mode</label>
         <select class="form-select">
-          <option>UPI / Bank transfer (tracked)</option>
-          <option>Cash on delivery</option>
+          <option data-lang-key="upiBank">UPI / Bank transfer (tracked)</option>
+          <option data-lang-key="cashOnDelivery">Cash on delivery</option>
         </select>
       </div>
     </div>
 
     <div class="form-check mt-3">
       <input class="form-check-input" type="checkbox" id="confirmCheck">
-      <label class="form-check-label" for="confirmCheck">
+      <label class="form-check-label" for="confirmCheck" data-lang-key="confirmAccurate">
         I confirm the above details are accurate to the best of my knowledge.
       </label>
     </div>
 
-    <button type="submit" class="btn btn-success btn-lg mt-4">Publish Lot to Verified Buyers</button>
+    <button type="submit" class="btn btn-success btn-lg mt-4" data-lang-key="publishLot">Publish Lot to Verified Buyers</button>
   </form>
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/language-switcher.js"></script>
+<script src="js/voice-to-text.js"></script>
 </body>
 </html>

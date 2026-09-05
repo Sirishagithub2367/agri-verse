@@ -21,26 +21,26 @@
     <div>
       <a class="btn btn-outline-light me-2" href="farmer.html" data-lang-key="farmer">Farmer</a>
       <a class="btn btn-outline-light me-2" href="buyer.html" data-lang-key="buyer">Buyer</a>
-      <a class="btn btn-outline-light" href="transaction.html">Transactions</a>
+      <a class="btn btn-outline-light" href="transaction.html" data-lang-key="viewTransactions">Transactions</a>
     </div>
   </div>
 </nav>
 
 <div class="container mt-4">
-  <h3 data-lang-key="todayPrices">Today's Mandi Prices — Tamil Nadu</h3>
+  <h3 data-lang-key="todayPricesFull">Today's Mandi Prices — Tamil Nadu</h3>
 
   <div class="mb-3">
-    <input type="text" id="farmerVoiceInput" placeholder="Speak crop name..." style="padding:8px; width:250px;">
-    <button onclick="startVoiceInput('farmerVoiceInput')">🎤 Speak</button>
+    <input type="text" id="farmerVoiceInput" placeholder="Speak crop name..." data-lang-key-placeholder="speakCropName" style="padding:8px; width:250px;">
+    <button onclick="startVoiceInput('farmerVoiceInput')" data-lang-key="speakBtn">🎤 Speak</button>
   </div>
 
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
         <th data-lang-key="cropName">Crop</th>
-        <th>Market</th>
-        <th data-lang-key="price">Price (₹/quintal)</th>
-        <th>Date</th>
+        <th data-lang-key="marketLabel">Market</th>
+        <th data-lang-key="priceQuintal">Price (₹/quintal)</th>
+        <th data-lang-key="dateLabel">Date</th>
       </tr>
     </thead>
     <tbody>
@@ -51,11 +51,11 @@
     </tbody>
   </table>
 
-  <div class="alert alert-warning">
+  <div class="alert alert-warning" data-lang-key="volatilityAlert">
     📈 Tomato prices are volatile due to monsoon supply disruption — <strong>Recommendation: Check daily before selling</strong>
   </div>
 
-  <h3 class="mt-4">Tomato Price Trend — Koyambedu Market (₹/kg)</h3>
+  <h3 class="mt-4" data-lang-key="priceTrendHeading">Tomato Price Trend — Koyambedu Market (₹/kg)</h3>
   <canvas id="priceChart" width="400" height="150"></canvas>
 
   <div class="mt-4 mb-5">
@@ -82,7 +82,7 @@ new Chart(document.getElementById('priceChart'), {
   }
 });
 </script>
-<script src="js/language-switch.js"></script>
+<script src="js/language-switcher.js"></script>
 <script src="js/voice-to-text.js"></script>
 </body>
 </html>

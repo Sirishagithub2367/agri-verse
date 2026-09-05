@@ -14,15 +14,15 @@
 
         <div class="chat-header">
             <div>
-                <h1>🌱 AgriVerse AI</h1>
-                <p>Your smart farming assistant</p>
+                <h1 data-lang-key="chatbotTitle">🌱 AgriVerse AI</h1>
+                <p data-lang-key="chatbotSubtitle">Your smart farming assistant</p>
             </div>
         </div>
 
         <div class="chat-messages" id="chatMessages">
 
             <div class="message bot-message">
-                <div class="message-content">
+                <div class="message-content" data-lang-key="chatbotGreeting">
                     Hello! 👋 I'm AgriVerse AI.
                     <br><br>
                     Ask me anything about farming, crops, irrigation,
@@ -38,15 +38,17 @@
                 type="text"
                 id="messageInput"
                 placeholder="Ask something about agriculture..."
+                data-lang-key-placeholder="chatbotInputPlaceholder"
                 autocomplete="off"
             >
 
-            <button id="sendButton">Send</button>
+            <button id="sendButton" data-lang-key="chatbotSendBtn">Send</button>
 
         </div>
 
     </div>
 
+    <script src="js/language-switcher.js"></script>
     <script src="chatbot.js"></script>
 
 </body>
