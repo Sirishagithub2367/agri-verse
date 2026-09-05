@@ -9,7 +9,6 @@ function startVoiceInput(targetInputId) {
   const recognition = new SpeechRecognition();
   const savedLang = localStorage.getItem("selectedLang") || "en";
 
-  // Map our language codes to speech recognition language codes
   const langMap = {
     en: "en-IN",
     hi: "hi-IN",
@@ -20,3 +19,15 @@ function startVoiceInput(targetInputId) {
   recognition.start();
 
   recognition.onresult = function (event) {
+    const spokenText = event.results[0][0].transcript;
+    const inputBox = document.getElementById(targetInputId);
+    if (inputBox) {
+      inputBox.value = spokenText;
+    }
+  };
+
+  recognition.onerror = function (event) {
+    console.error("Voice input error:", event.error);
+    alert("Couldn't hear you clearly. Try again.");
+  };
+}

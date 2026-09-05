@@ -1,88 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Farmer Dashboard - AgriConnect</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+let currentLangData = {};
 
-<div class="lang-switcher" style="text-align:center; margin:10px;">
-  <button onclick="loadLanguage('en')">EN</button>
-  <button onclick="loadLanguage('hi')">हिं</button>
-  <button onclick="loadLanguage('ta')">தமிழ்</button>
-</div>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-success">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">🌾 AgriConnect</a>
-    <div>
-      <a class="btn btn-outline-light me-2" href="farmer.html" data-lang-key="farmer">Farmer</a>
-      <a class="btn btn-outline-light me-2" href="buyer.html" data-lang-key="buyer">Buyer</a>
-      <a class="btn btn-outline-light" href="transaction.html" data-lang-key="viewTransactions">Transactions</a>
-    </div>
-  </div>
-</nav>
-
-<div class="container mt-4">
-  <h3 data-lang-key="todayPricesFull">Today's Mandi Prices — Tamil Nadu</h3>
-
-  <div class="mb-3">
-    <input type="text" id="farmerVoiceInput" placeholder="Speak crop name..." data-lang-key-placeholder="speakCropName" style="padding:8px; width:250px;">
-    <button onclick="startVoiceInput('farmerVoiceInput')" data-lang-key="speakBtn">🎤 Speak</button>
-  </div>
-
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th data-lang-key="cropName">Crop</th>
-        <th data-lang-key="marketLabel">Market</th>
-        <th data-lang-key="priceQuintal">Price (₹/quintal)</th>
-        <th data-lang-key="dateLabel">Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Tomato</td><td>Koyambedu, Chennai</td><td>2300</td><td>29-Aug-2026</td></tr>
-      <tr><td>Onion</td><td>Koyambedu, Chennai</td><td>4300</td><td>29-Aug-2026</td></tr>
-      <tr><td>Onion</td><td>Coimbatore</td><td>1800</td><td>29-Aug-2026</td></tr>
-      <tr><td>Potato</td><td>Koyambedu, Chennai</td><td>2400</td><td>29-Aug-2026</td></tr>
-    </tbody>
-  </table>
-
-  <div class="alert alert-warning" data-lang-key="volatilityAlert">
-    📈 Tomato prices are volatile due to monsoon supply disruption — <strong>Recommendation: Check daily before selling</strong>
-  </div>
-
-  <h3 class="mt-4" data-lang-key="priceTrendHeading">Tomato Price Trend — Koyambedu Market (₹/kg)</h3>
-  <canvas id="priceChart" width="400" height="150"></canvas>
-
-  <div class="mt-4 mb-5">
-    <a href="lot-creation.html" class="btn btn-success btn-lg m-2" data-lang-key="createLot">+ Create a Lot to Sell</a>
-    <a href="transaction.html" class="btn btn-outline-success btn-lg m-2" data-lang-key="viewTransactions">View My Transactions</a>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-new Chart(document.getElementById('priceChart'), {
-  type: 'line',
-  data: {
-    labels: ['Normal Supply','Rain Disruption Begins','Peak Shortage','Peak Shortage','Supply Recovering','Current'],
-    datasets: [{
-      label: 'Tomato Price (₹/kg) - Koyambedu',
-      data: [20, 45, 120, 150, 80, 23],
-      borderColor: 'green',
-      backgroundColor: 'rgba(0,128,0,0.1)',
-      fill: true,
-      tension: 0.3
-    }]
+async function loadLanguage(lang) {
+  try {
+    const response = await fetch(`lang/${lang}.json`);
+    currentLangData = await response.json();
+    applyLanguage();
+    localStorage.setItem("selectedLang", lang);
+  } catch (error) {
+    console.error("Language load failed:", error);
   }
+}
+
+function applyLanguage() {
+  // Regular text elements
+  document.querySelectorAll("[data-lang-key]").forEach(el => {
+    const key = el.getAttribute("data-lang-key");
+    if (currentLangData[key]) {
+      el.innerHTML = currentLangData[key];
+    }
+  });
+
+  // Placeholder text (inputs/textareas)
+  document.querySelectorAll("[data-lang-key-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-lang-key-placeholder");
+    if (currentLangData[key]) {
+      el.setAttribute("placeholder", currentLangData[key]);
+    }
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const savedLang = localStorage.getItem("selectedLang") || "en";
+  loadLanguage(savedLang);
 });
-</script>
-<script src="js/language-switcher.js"></script>
-<script src="js/voice-to-text.js"></script>
-</body>
-</html>
